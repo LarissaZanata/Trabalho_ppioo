@@ -18,6 +18,13 @@ public class LocalColecoesServico implements ColecoesServico {
 		return album.getId();
 	}
 	
+	public void mostrarAlbuns() {
+		dao.mostraAlbuns();
+	}
+	
+	public Album getAlBumPeloId(int id) {
+		return dao.getAlBumPeloId(id);
+	}
 /*	
 	public Album getAlbumPeloId(int id) {
 		return dao.getAlBumPeloId(id)

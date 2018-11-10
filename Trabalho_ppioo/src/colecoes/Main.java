@@ -40,6 +40,9 @@ public class Main {
             		int id = servico.adicionaAlbum(array[1], nFig);
             		saida.println("Album " + id + " criado.");
             		break;
+            	case "albuns":
+            		servico.mostrarAlbuns();
+            		break;
                 case "sair":
                     break loop;
                 default:
@@ -73,7 +76,8 @@ public class Main {
         //
         // Uma instância de classe que implementa ColecoesDao deve ser passada
         // como parâmetro ao invés de null.
-        ColecoesServico servico = new LocalColecoesServico(null);
+        Dao dao = new Dao();
+        ColecoesServico servico = new LocalColecoesServico(dao);
         Main main = new Main(entrada, servico, System.out);
         main.executa();
     }
