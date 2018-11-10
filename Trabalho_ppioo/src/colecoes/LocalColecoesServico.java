@@ -25,15 +25,5 @@ public class LocalColecoesServico implements ColecoesServico {
 	public Album getAlBumPeloId(int id) {
 		return dao.getAlBumPeloId(id);
 	}
-/*	
-	public Album getAlbumPeloId(int id) {
-		return dao.getAlBumPeloId(id)
-	}
-	
-	public testAdicionaAlbum() {
-		servico = ...;
-		int id = servico.adicionaAlbum("a", 2);
-		Album album = servico.getAlBumPeloId(id);
-	}
-	*/
+
 }
