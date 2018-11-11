@@ -16,4 +16,5 @@ public interface ColecoesDao {
 	public void adicionaAlbum(Album album);
 	public void mostraAlbuns();
 	public Album getAlBumPeloId(int id);
+	public void mostrarPleoId(int id);
 }

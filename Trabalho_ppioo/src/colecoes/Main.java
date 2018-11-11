@@ -43,6 +43,10 @@ public class Main {
             	case "albuns":
             		servico.mostrarAlbuns();
             		break;
+            	case "mostrar":
+            		int ID = Integer.parseInt(array[1]);
+            		servico.mostrarAlbumPeloId(ID);
+            		break;
                 case "sair":
                     break loop;
                 default:

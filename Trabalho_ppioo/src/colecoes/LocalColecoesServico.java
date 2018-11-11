@@ -25,5 +25,9 @@ public class LocalColecoesServico implements ColecoesServico {
 	public Album getAlBumPeloId(int id) {
 		return dao.getAlBumPeloId(id);
 	}
+	
+	public void mostrarAlbumPeloId(int id) {
+		dao.mostrarPleoId(id);
+	}
 
 }
