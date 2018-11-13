@@ -45,7 +45,12 @@ public class Main {
             		break;
             	case "mostrar":
             		int ID = Integer.parseInt(array[1]);
-            		servico.mostrarAlbumPeloId(ID);
+            		Album album = servico.mostrarAlbumPeloId(ID);
+            		if(album != null) {
+            			System.out.println("----Informações do Album----");
+        				System.out.println("Título: " + album.getNome());
+        				System.out.println("Quantidade de figurinhas: " + album.getQuantidade());
+            		}
             		break;
                 case "sair":
                     break loop;

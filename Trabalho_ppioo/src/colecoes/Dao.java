@@ -6,8 +6,9 @@ import java.util.List;
 public class Dao implements ColecoesDao{
 	List<Album> listaDeAlbuns = new ArrayList<Album>();
 
+	@Override
 	public void adicionaAlbum(Album album) {
-		boolean albumExiste = false;
+		 		boolean albumExiste = false;
 		
 		for(int i =0; i < listaDeAlbuns.size(); i++) {
 			if(this.listaDeAlbuns.get(i).getNome() == album.getNome()) {
@@ -20,9 +21,10 @@ public class Dao implements ColecoesDao{
 		}
 		else {
 			listaDeAlbuns.add(album);
-		}	
+		}
 	}
 	
+	@Override
 	public void mostraAlbuns() {
 		System.out.println("------Albuns------ ");
 		for(int i = 0; i <listaDeAlbuns.size(); i++) {
@@ -30,33 +32,7 @@ public class Dao implements ColecoesDao{
 		}
 	}
 	
-	public void mostrarPleoId(int id) {
-		//boolean albumExiste = false;
-		Album album = getAlBumPeloId(id);
-		
-		if(album != null) {
-			System.out.println("----Informações do Album----");
-			System.out.println("Título: " + album.getNome());
-			System.out.println("Quantidade de Figurinhas: " + album.getQuantidade());
-		}
-		else {
-			System.out.println("Album com Id = " + id + " não existe.");
-		}
-		/*
-		for(int i = 0; i <= listaDeAlbuns.size(); i++) {
-			if(listaDeAlbuns.get(i).getId() == id) {
-				albumExiste = true;
-				System.out.println("----Informações do Album----");
-				System.out.println("Título: " + listaDeAlbuns.get(i).getNome());
-				System.out.println("Título: " + listaDeAlbuns.get(i).getQuantidade());
-			}
-		}
-		
-		if(!albumExiste) {
-			System.out.println("Album com Id = " + id + " não existe.");
-		}*/
-	}
-	
+	@Override
 	public Album getAlBumPeloId(int id) {
 		 for (Album album : listaDeAlbuns) {
 		        if (album.getId() == id) 

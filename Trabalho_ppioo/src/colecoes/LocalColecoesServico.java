@@ -12,22 +12,27 @@ public class LocalColecoesServico implements ColecoesServico {
         this.dao = dao;
     }
 	
+    @Override
 	public int adicionaAlbum(String nome, int numFigs) {
 		Album album = new Album(nome, numFigs);
 		dao.adicionaAlbum(album);
 		return album.getId();
 	}
 	
+    @Override
 	public void mostrarAlbuns() {
 		dao.mostraAlbuns();
 	}
 	
+    @Override
 	public Album getAlBumPeloId(int id) {
 		return dao.getAlBumPeloId(id);
 	}
 	
-	public void mostrarAlbumPeloId(int id) {
-		dao.mostrarPleoId(id);
+    @Override
+	public Album mostrarAlbumPeloId(int id) {
+    	Album album = dao.getAlBumPeloId(id);
+    	return album;
 	}
 
 }
