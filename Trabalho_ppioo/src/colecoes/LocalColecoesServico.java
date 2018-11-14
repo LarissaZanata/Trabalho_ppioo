@@ -1,5 +1,7 @@
 package colecoes;
 
+import java.util.List;
+
 // Uma implementação de ColecoesServico que armazena os dados e executa as
 // operações localmente. Todas as operações de armazenamento e recuperação de
 // dados são feitas através da instância dao.
@@ -20,8 +22,9 @@ public class LocalColecoesServico implements ColecoesServico {
 	}
 	
     @Override
-	public void mostrarAlbuns() {
-		dao.mostraAlbuns();
+	public List<Album> retornaListaAlbuns() {
+		List<Album> lista = dao.retornaListaAlbuns();
+		return lista;
 	}
 	
     @Override
@@ -34,5 +37,7 @@ public class LocalColecoesServico implements ColecoesServico {
     	Album album = dao.getAlBumPeloId(id);
     	return album;
 	}
+    
+   
 
 }

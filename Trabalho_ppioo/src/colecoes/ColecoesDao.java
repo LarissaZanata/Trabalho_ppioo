@@ -1,5 +1,7 @@
 package colecoes;
 
+import java.util.List;
+
 // Esta interface deve conter métodos que armazenam e recuperam os dados
 // inseridos no programa. Alguns possíveis métodos
 // - salvaAlbum, armazena um álbum que pode ser recuperado posteriormente;
@@ -14,6 +16,6 @@ package colecoes;
 public interface ColecoesDao {
 	
 	public void adicionaAlbum(Album album);
-	public void mostraAlbuns();
+	public List<Album> retornaListaAlbuns();
 	public Album getAlBumPeloId(int id);
 }

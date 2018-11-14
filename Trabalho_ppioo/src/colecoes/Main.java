@@ -1,6 +1,7 @@
 package colecoes;
 
 import java.io.PrintStream;
+import java.util.List;
 import java.util.Scanner;
 
 // Classe principal que implementa uma interface orientada a comandos com o
@@ -41,7 +42,17 @@ public class Main {
             		saida.println("Album " + id + " criado.");
             		break;
             	case "albuns":
-            		servico.mostrarAlbuns();
+            		List<Album> lista = servico.retornaListaAlbuns();
+            		System.out.println("------Albuns------");
+            		if(lista.size()!= 0) {
+            			for(int i= 0; i < lista.size(); i++) {
+                			System.out.println(lista.get(i).getNome());
+                		}
+            		}
+            		else {
+            			System.out.println("Ainda não existe albuns cadastrados.");
+            		}
+            		
             		break;
             	case "mostrar":
             		int ID = Integer.parseInt(array[1]);

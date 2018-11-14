@@ -25,11 +25,9 @@ public class Dao implements ColecoesDao{
 	}
 	
 	@Override
-	public void mostraAlbuns() {
-		System.out.println("------Albuns------ ");
-		for(int i = 0; i <listaDeAlbuns.size(); i++) {
-			System.out.println(listaDeAlbuns.get(i).getNome());
-		}
+	public List<Album> retornaListaAlbuns() {		
+		List<Album> lista = listaDeAlbuns;
+		return lista;
 	}
 	
 	@Override
