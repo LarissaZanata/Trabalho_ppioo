@@ -10,4 +10,5 @@ public interface ColecoesServico {
 	public List<Album> retornaListaAlbuns();
 	public Album getAlBumPeloId(int id);
 	public Album mostrarAlbumPeloId(int id);
+	public boolean adicionarNovaColecao(int idlbum, String nome);
 }

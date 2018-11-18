@@ -13,6 +13,8 @@ public class LocalColecoesServico implements ColecoesServico {
     public LocalColecoesServico(ColecoesDao dao) {
         this.dao = dao;
     }
+    
+    /*Métodos para albuns*/
 	
     @Override
 	public int adicionaAlbum(String nome, int numFigs) {
@@ -38,6 +40,13 @@ public class LocalColecoesServico implements ColecoesServico {
     	return album;
 	}
     
-   
+    /*Métodos para colecoes*/
+    
+    @Override
+    public boolean adicionarNovaColecao(int idAlbum, String nome) {
+	   //Colecao colecao = new Colecao(idAlbum, nome);
+	   boolean colecaoJaExiste = false;
+	   return colecaoJaExiste = dao.adicionarNovaColecao(nome, idAlbum);
+   }
 
 }

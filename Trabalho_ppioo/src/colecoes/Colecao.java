@@ -8,7 +8,7 @@ public class Colecao {
 	
 	public Colecao(int idAlbum, String nomeColecao) {
 		this.idAlbum = idAlbum;
-		this.nome = nome;
+		this.nome = nomeColecao;
 	}
 
 	public String getNome() {

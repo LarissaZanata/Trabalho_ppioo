@@ -5,7 +5,10 @@ import java.util.List;
 
 public class Dao implements ColecoesDao{
 	List<Album> listaDeAlbuns = new ArrayList<Album>();
+	List<Colecao> listaDeColecao = new ArrayList<Colecao>();
 
+	
+	/*Métodos para albuns*/
 	@Override
 	public void adicionaAlbum(Album album) {
 		 		boolean albumExiste = false;
@@ -37,5 +40,28 @@ public class Dao implements ColecoesDao{
 		        	return album;
 		    }
 		    return null;
+	}
+	
+	/*Métodos para colecoes*/
+	
+	@Override
+	public boolean adicionarNovaColecao(String nomeColecao, int idAlbum) {
+		Colecao colecao = new Colecao(idAlbum, nomeColecao);
+		boolean colecaoExisteParaId = false;
+		
+		for (Colecao valor : listaDeColecao) {
+			if ((valor.getNome().equals(nomeColecao)) && (valor.getIdAlbum() == idAlbum)) {
+				colecaoExisteParaId = true;
+				break;
+			}
+		}
+	
+		if(colecaoExisteParaId) {
+			return colecaoExisteParaId;
+		}
+		else {
+			listaDeColecao.add(colecao);
+			return colecaoExisteParaId;
+		}		
 	}
 }

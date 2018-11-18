@@ -13,7 +13,7 @@ import java.util.Scanner;
 // netbeans), abra o terminal e mude para o diretório do projeto e execute:
 // java -jar dist/Colecoes.jar
 public class Main {
-    final static String PROMPT = "> ";
+    final static String PROMPT = "> "; 
     final PrintStream saida;
     final Scanner entrada;
     final ColecoesServico servico;
@@ -63,6 +63,17 @@ public class Main {
         				System.out.println("Quantidade de figurinhas: " + album.getQuantidade());
             		}
             		break;
+            	case "nova-colecao":
+            		int idAlbum = Integer.parseInt(array[1]);
+            		String nomeColecao = array[2].trim();
+            		boolean colecaoJaExiste = servico.adicionarNovaColecao(idAlbum, nomeColecao);
+            		if(colecaoJaExiste) {
+            			saida.println("Esta colecao já existe para o album " + idAlbum);
+            		}
+            		else {
+            			saida.println("Colecao " + idAlbum + "/"+ array[2] + " criada.");
+            		}
+            		break;
                 case "sair":
                     break loop;
                 default:
@@ -73,7 +84,7 @@ public class Main {
 
     String leComand() {
         while (true) {
-            saida.print(PROMPT);
+            saida.print(PROMPT);;
             String comando = entrada.nextLine().trim();
             if (!comando.isEmpty()) {
                 return comando;
