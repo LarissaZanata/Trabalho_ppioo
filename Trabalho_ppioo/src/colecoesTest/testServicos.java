@@ -4,10 +4,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
+import java.util.Locale;
+import java.util.spi.LocaleServiceProvider;
 
 import org.junit.Test;
 
 import colecoes.Album;
+import colecoes.Colecao;
 import colecoes.ColecoesServico;
 import colecoes.Dao;
 import colecoes.LocalColecoesServico;
@@ -41,5 +44,14 @@ public class testServicos {
 		ColecoesServico servico = new LocalColecoesServico(dao);
 		List<Album> lista = servico.retornaListaAlbuns();
 		assertEquals(0, lista.size());
+	}
+
+	@Test
+	public void testNovaColecao() {
+		Dao dao = new Dao();
+		ColecoesServico servico = new LocalColecoesServico(dao);
+		//a colecao não deve existir para o id 1 ainda
+		boolean colecaoJaExiste = servico.adicionarNovaColecao(1, "Principal");
+		assertEquals(false, colecaoJaExiste);
 	}
 }

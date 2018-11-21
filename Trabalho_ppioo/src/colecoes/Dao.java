@@ -9,6 +9,7 @@ public class Dao implements ColecoesDao{
 
 	
 	/*Métodos para albuns*/
+	
 	@Override
 	public void adicionaAlbum(Album album) {
 		 		boolean albumExiste = false;
