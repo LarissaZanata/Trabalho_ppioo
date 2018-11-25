@@ -53,17 +53,6 @@ public class Colecao {
 	
 	
 	public void adicionarFigurinhaNaColecao(String[] figurinhas) {
-		/*
-		for(int i = 0; i < this.figurinhasNovas.size(); i++) {
-			for(int a = 0; a < figurinhas.length; a++) {
-				if(this.figurinhasNovas.get(i).equals(figurinhas[a])) {
-					this.figRepetidas.add(figurinhas[a]);
-				}
-			}
-		}
-		*/	
-		
-		
 		List<String> novas  = new ArrayList<String>();
 		List<String> repetidas  = new ArrayList<String>();
 		
