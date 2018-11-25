@@ -19,4 +19,6 @@ public interface ColecoesDao {
 	public List<Album> retornaListaAlbuns();
 	public Album getAlBumPeloId(int id);
 	public boolean adicionarNovaColecao( String nomeColecao, int idAlbum);
+	public List<Colecao> retornaListaDeColecaoes();
+	public void adicionarFigurinhasColecao(int idAlbum, String nomeColecao, String figurinhas);
 }

@@ -34,6 +34,11 @@ public class Dao implements ColecoesDao{
 		return lista;
 	}
 	
+	public List<Colecao> retornaListaDeColecaoes(){
+		List<Colecao> lista = listaDeColecao;
+		return lista;
+	}
+	
 	@Override
 	public Album getAlBumPeloId(int id) {
 		 for (Album album : listaDeAlbuns) {
@@ -64,5 +69,15 @@ public class Dao implements ColecoesDao{
 			listaDeColecao.add(colecao);
 			return colecaoExisteParaId;
 		}		
+	}
+	
+	@Override
+	public void adicionarFigurinhasColecao(int idAlbum, String nomeColecao, String figurinhas) {
+		for(int i = 0; i < listaDeColecao.size(); i++) {
+			if(listaDeColecao.get(i).getIdAlbum() == idAlbum && listaDeColecao.get(i).getNome().equals(nomeColecao)) {
+				String array[] = figurinhas.split(",");
+				listaDeColecao.get(i).adicionarFigurinhaNaColecao(array);
+			}
+		}
 	}
 }

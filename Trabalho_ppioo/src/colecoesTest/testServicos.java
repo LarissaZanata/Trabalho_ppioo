@@ -54,4 +54,16 @@ public class testServicos {
 		boolean colecaoJaExiste = servico.adicionarNovaColecao(1, "Principal");
 		assertEquals(false, colecaoJaExiste);
 	}
+	
+	@Test
+	public void testNovaColecaoJaExiste() {
+		Dao dao = new Dao();
+		ColecoesServico servico = new LocalColecoesServico(dao);
+		
+		servico.adicionarNovaColecao(1, "Teste");
+		boolean colecaoJaExiste = servico.adicionarNovaColecao(1, "Teste");
+		//foi adicionado 2 colecoes com mesmo nome para o mesmo id, na segunda vez a coleção já deve existir e voltar true.
+		assertEquals(true, colecaoJaExiste);
+		
+	}
 }

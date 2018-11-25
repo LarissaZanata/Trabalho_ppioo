@@ -43,10 +43,11 @@ public class Main {
             		break;
             	case "albuns":
             		List<Album> lista = servico.retornaListaAlbuns();
+            		List<Colecao> listacolecao = servico.retornaListaDeColecao();
             		System.out.println("------Albuns------");
             		if(lista.size()!= 0) {
             			for(int i= 0; i < lista.size(); i++) {
-                			System.out.println(lista.get(i).getNome());
+                			System.out.println(i+1 + "- " +lista.get(i).getNome());
                 		}
             		}
             		else {
@@ -74,6 +75,12 @@ public class Main {
             			saida.println("Colecao " + idAlbum + "/"+ array[2] + " criada.");
             		}
             		break;
+            	case "adicionar":
+            		int idDoAlbum =  Integer.parseInt(array[1]);
+            		String nColecao = array[2].trim();
+            		String figurinhas = array[3].trim();
+            		servico.adicionarFigurinhas(idDoAlbum, nColecao, figurinhas);
+            		break;
                 case "sair":
                     break loop;
                 default:
@@ -95,6 +102,17 @@ public class Main {
     String[] parsearEntrada(String comando) {
     	String array[] = comando.split(" ");
     	return array;
+    }
+    
+    void exibirMenu() {
+    	System.out.println("--------Digite um comando como alguns dos modelos abaixo--------");
+    	System.out.println("");
+    	System.out.println("Adicionar Album:  novo-album nome-do-album Nº-de-Figurinhas");
+    	System.out.println("Listar albuns existentes:  albuns");
+    	System.out.println("Mostrar informações sobre algum album:  mostrar iD-Do-Album");
+    	System.out.println("Inserir uma coleção:  nova-colecao id-Album nome-Colecao");
+    	System.out.println("Adicionar figurinhas: adicionar id-album nome-colecao figurinha-separadas-por-virgura");
+    	System.out.println("");
     }
     
     

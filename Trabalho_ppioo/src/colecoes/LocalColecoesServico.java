@@ -43,10 +43,21 @@ public class LocalColecoesServico implements ColecoesServico {
     /*Métodos para colecoes*/
     
     @Override
+    public List<Colecao> retornaListaDeColecao(){
+    	List<Colecao> lista = dao.retornaListaDeColecaoes();
+    	return lista;
+    }
+    
+    @Override
     public boolean adicionarNovaColecao(int idAlbum, String nome) {
 	   //Colecao colecao = new Colecao(idAlbum, nome);
 	   boolean colecaoJaExiste = false;
 	   return colecaoJaExiste = dao.adicionarNovaColecao(nome, idAlbum);
    }
+    
+    @Override
+    public void adicionarFigurinhas(int idAlbum, String nomeColecao, String figurinhas) {
+    	dao.adicionarFigurinhasColecao(idAlbum, nomeColecao, figurinhas);
+    }
 
 }
