@@ -20,5 +20,9 @@ public interface ColecoesDao {
 	public Album getAlBumPeloId(int id);
 	public boolean adicionarNovaColecao( String nomeColecao, int idAlbum);
 	public List<Colecao> retornaListaDeColecaoes();
-	public void adicionarFigurinhasColecao(int idAlbum, String nomeColecao, String figurinhas);
+//	public void adicionarFigurinhasColecao(int idAlbum, String nomeColecao, String figurinhas);
+	
+	
+	
+	public boolean adicionarFigurinhasColecaoOK(int idAlbum, String nomeColecao, String figurinhas);
 }

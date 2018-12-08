@@ -71,7 +71,7 @@ public class Dao implements ColecoesDao{
 		}		
 	}
 	
-	@Override
+/*	@Override
 	public void adicionarFigurinhasColecao(int idAlbum, String nomeColecao, String figurinhas) {
 		for(int i = 0; i < listaDeColecao.size(); i++) {
 			if(listaDeColecao.get(i).getIdAlbum() == idAlbum && listaDeColecao.get(i).getNome().equals(nomeColecao)) {
@@ -79,5 +79,18 @@ public class Dao implements ColecoesDao{
 				listaDeColecao.get(i).adicionarFigurinhaNaColecao(array);
 			}
 		}
+	}
+	*/
+	
+	public boolean adicionarFigurinhasColecaoOK(int idAlbum, String nomeColecao, String figurinhas) {
+		boolean figurinhasAdicionadas = false;
+		for(int i = 0; i < listaDeColecao.size(); i++) {
+			if(listaDeColecao.get(i).getIdAlbum() == idAlbum && listaDeColecao.get(i).getNome().equals(nomeColecao)) {
+				String array[] = figurinhas.split(",");
+				listaDeColecao.get(i).adicionarFigurinhaNaColecao(array);
+				figurinhasAdicionadas = true;
+			}
+		}
+		return figurinhasAdicionadas;
 	}
 }

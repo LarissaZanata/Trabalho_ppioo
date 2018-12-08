@@ -76,10 +76,16 @@ public class Main {
             		}
             		break;
             	case "adicionar":
+            		boolean figurinhasAdicionadas = false;
             		int idDoAlbum =  Integer.parseInt(array[1]);
-            		String nColecao = array[2].trim();
+            		String nomColecao = array[2].trim();
             		String figurinhas = array[3].trim();
-            		servico.adicionarFigurinhas(idDoAlbum, nColecao, figurinhas);
+            		//servico.adicionarFigurinhas(idDoAlbum, nomColecao, figurinhas);
+            		
+            		figurinhasAdicionadas = servico.adicionarFigurinhasOK(idDoAlbum, nomColecao, figurinhas);
+            		if(!figurinhasAdicionadas) {
+            			System.out.println("Pode ser que a colecao " + nomColecao + " ainda não exista! Verfique sua existencia ou crie uma nova coleção");
+            		}
             		break;
                 case "sair":
                     break loop;
