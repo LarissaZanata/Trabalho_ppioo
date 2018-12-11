@@ -66,4 +66,28 @@ public class testServicos {
 		assertEquals(true, colecaoJaExiste);
 		
 	}
+	
+	@Test
+	public void testAdicionarFigurinha() {
+		boolean figurinhasAdicionadas = false;
+		Dao dao = new Dao();
+		ColecoesServico servico = new LocalColecoesServico(dao);
+		servico.adicionaAlbum("pokemon", 30);
+		servico.adicionarNovaColecao(1, "principal");
+		figurinhasAdicionadas = servico.adicionarFigurinhas(1, "principal", "1,4,7");
+		
+		assertEquals(true, figurinhasAdicionadas);
+	}
+	
+	@Test
+	public void testNaoAdicionouFigurinha() {
+		boolean figurinhasAdicionadas = false;
+		Dao dao = new Dao();
+		ColecoesServico servico = new LocalColecoesServico(dao);
+		servico.adicionaAlbum("pokemon", 30);
+		servico.adicionarNovaColecao(1, "principal");
+		figurinhasAdicionadas = servico.adicionarFigurinhas(1, "naoExiste", "1,4,7");
+		
+		assertEquals(false, figurinhasAdicionadas);
+	}
 }

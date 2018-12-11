@@ -71,18 +71,8 @@ public class Dao implements ColecoesDao{
 		}		
 	}
 	
-/*	@Override
-	public void adicionarFigurinhasColecao(int idAlbum, String nomeColecao, String figurinhas) {
-		for(int i = 0; i < listaDeColecao.size(); i++) {
-			if(listaDeColecao.get(i).getIdAlbum() == idAlbum && listaDeColecao.get(i).getNome().equals(nomeColecao)) {
-				String array[] = figurinhas.split(",");
-				listaDeColecao.get(i).adicionarFigurinhaNaColecao(array);
-			}
-		}
-	}
-	*/
-	
-	public boolean adicionarFigurinhasColecaoOK(int idAlbum, String nomeColecao, String figurinhas) {
+	@Override
+	public boolean adicionarFigurinhasColecao(int idAlbum, String nomeColecao, String figurinhas) {
 		boolean figurinhasAdicionadas = false;
 		for(int i = 0; i < listaDeColecao.size(); i++) {
 			if(listaDeColecao.get(i).getIdAlbum() == idAlbum && listaDeColecao.get(i).getNome().equals(nomeColecao)) {
@@ -93,4 +83,31 @@ public class Dao implements ColecoesDao{
 		}
 		return figurinhasAdicionadas;
 	}
+	
+	@Override
+	public List<String> retornaFigurinhasColecao(int idAlbum, String nomeColecao) {
+		List<String> novas = new ArrayList<String>();
+		for(int i = 0; i < listaDeColecao.size(); i++) {
+			if(listaDeColecao.get(i).getIdAlbum() == idAlbum && listaDeColecao.get(i).getNome().equals(nomeColecao)) {
+					novas = listaDeColecao.get(i).GetfigNovas();
+					break;
+			}
+		}	
+		return novas;
+	}
+	
+	@Override
+	public List<String> retornaFigurinhasRepetidasColecao(int idAlbum, String nomeColecao) {
+		List<String> repetidas = new ArrayList<String>();
+		for(int i = 0; i < listaDeColecao.size(); i++) {
+			if(listaDeColecao.get(i).getIdAlbum() == idAlbum && listaDeColecao.get(i).getNome().equals(nomeColecao)) {
+					repetidas = listaDeColecao.get(i).GetfigRepetidas();
+					break;
+			}
+		}	
+		return repetidas;
+	}
+	
+	
+	
 }

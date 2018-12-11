@@ -1,5 +1,6 @@
 package colecoes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 // Uma implementação de ColecoesServico que armazena os dados e executa as
@@ -55,18 +56,31 @@ public class LocalColecoesServico implements ColecoesServico {
 	   return colecaoJaExiste = dao.adicionarNovaColecao(nome, idAlbum);
    }
     
-//    @Override
-//   public void adicionarFigurinhas(int idAlbum, String nomeColecao, String figurinhas) {
-//    	dao.adicionarFigurinhasColecao(idAlbum, nomeColecao, figurinhas);
-//    }
     
     @Override
-    public boolean adicionarFigurinhasOK(int idAlbum, String nomeColecao, String figurinhas) {
+    public boolean adicionarFigurinhas(int idAlbum, String nomeColecao, String figurinhas) {
     	boolean figurinhasAdiciondas = false;
-    	
-    	figurinhasAdiciondas =  dao.adicionarFigurinhasColecaoOK(idAlbum, nomeColecao, figurinhas);
+    	figurinhasAdiciondas =  dao.adicionarFigurinhasColecao(idAlbum, nomeColecao, figurinhas);
     	return figurinhasAdiciondas;
     }
     
+    public List<String> retornaFigurinhasPresentesColeca(int idAlbum, String nomeColecao){
+    	List<String> FigPresentes = new ArrayList<String>();
+    	FigPresentes = dao.retornaFigurinhasColecao(idAlbum, nomeColecao);
+    	return FigPresentes;
+    }
+    
+    public List<String> retornaFigurinhasFaltantesColecao(int idAlbum, String nomeColecao) {
+    	List<String> FigPresentes = new ArrayList<String>();
+    	FigPresentes = dao.retornaFigurinhasColecao(idAlbum, nomeColecao);
+    	
+    	
+    	return FigPresentes;
+    }
+    
+    private List<String> retornaFigFaltantesColecao(List<String> FigPresentes){
+    	
+    	return FigPresentes;
+    }
 
 }

@@ -12,9 +12,5 @@ public interface ColecoesServico {
 	public Album mostrarAlbumPeloId(int id);
 	public boolean adicionarNovaColecao(int idlbum, String nome);
 	public List<Colecao> retornaListaDeColecao();
-//	public void adicionarFigurinhas(int idAlbum, String nomeColecao, String figurinhas);
-	
-	
-	
-	public boolean adicionarFigurinhasOK(int idAlbum, String nomeColecao, String figurinhas);
+	public boolean adicionarFigurinhas(int idAlbum, String nomeColecao, String figurinhas);
 }
