@@ -13,4 +13,8 @@ public interface ColecoesServico {
 	public boolean adicionarNovaColecao(int idlbum, String nome);
 	public List<Colecao> retornaListaDeColecao();
 	public boolean adicionarFigurinhas(int idAlbum, String nomeColecao, String figurinhas);
+	public int[] retornaFigurinhasDaColecao(int idAlbum, String nomeCol);
+	public int[] retornaFigurinhasDaColecaoFaltantes(int idAlbum, String nomeCol);
+	public int calculaPorcentagemFigurinhasAtual(int idAlbum, String nomeColecao);
+	public int calculaPorcentagemFigurinhasFaltantes(int idAlbum, String nomeColecao);
 }

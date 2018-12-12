@@ -57,12 +57,23 @@ public class Main {
             		break;
             	case "mostrar":
             		int ID = Integer.parseInt(array[1]);
-            		Album album = servico.mostrarAlbumPeloId(ID);
-            		if(album != null) {
-            			System.out.println("----Informações do Album----");
-        				System.out.println("Título: " + album.getNome());
-        				System.out.println("Quantidade de figurinhas: " + album.getQuantidade());
-            		}
+    				Album album = servico.mostrarAlbumPeloId(ID);
+    				Colecao colecao;
+    				int porcentagemAtual, posrcentagemFaltantes;
+    				int figsAtuais[] = new int[album.getQuantidade()];
+    				int figsFaltantes[] = new int[album.getQuantidade()];
+            			if(array[2] == null) {
+            				if(album != null) {
+            					System.out.println("----Informações do Album----");
+            					System.out.println("Título: " + album.getNome());
+            					System.out.println("Quantidade de figurinhas: " + album.getQuantidade());
+            				}
+            			}else {
+            				porcentagemAtual = servico.calculaPorcentagemFigurinhasAtual(Integer.valueOf(array[1]), array[2]);
+            				posrcentagemFaltantes = servico.calculaPorcentagemFigurinhasFaltantes(Integer.valueOf(array[1]), array[2]);
+            				figsAtuais = servico.retornaFigurinhasDaColecao(Integer.valueOf(array[1]), array[2]);
+            				figsFaltantes = servico.retornaFigurinhasDaColecaoFaltantes(Integer.valueOf(array[1]), array[2]);
+            			}
             		break;
             	case "nova-colecao":
             		int idAlbum = Integer.parseInt(array[1]);

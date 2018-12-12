@@ -63,24 +63,97 @@ public class LocalColecoesServico implements ColecoesServico {
     	figurinhasAdiciondas =  dao.adicionarFigurinhasColecao(idAlbum, nomeColecao, figurinhas);
     	return figurinhasAdiciondas;
     }
-    
-    public List<String> retornaFigurinhasPresentesColeca(int idAlbum, String nomeColecao){
-    	List<String> FigPresentes = new ArrayList<String>();
-    	FigPresentes = dao.retornaFigurinhasColecao(idAlbum, nomeColecao);
-    	return FigPresentes;
+ 
+    @Override
+    public int calculaPorcentagemFigurinhasAtual(int idAlbum, String nomeColecao){
+    	int quantidade = 0;
+    	int tamanhoAtualColecao = 0;
+    	int porcentagem;
+    	Album album = dao.getAlBumPeloId(idAlbum);
+    	int figurinhas[] = new int[album.getQuantidade()];
+    	
+    	figurinhas = retornaFigurinhasDaColecao(idAlbum, nomeColecao);
+    	
+    	
+    	for(int i = 0; i < figurinhas.length; i++) {
+    		if(figurinhas[i] != -1) {
+    			quantidade++;
+    		}
+    	}
+    	
+    	porcentagem = ( quantidade * album.getQuantidade())/100;
+    	
+    	return porcentagem;
     }
     
-    public List<String> retornaFigurinhasFaltantesColecao(int idAlbum, String nomeColecao) {
-    	List<String> FigPresentes = new ArrayList<String>();
-    	FigPresentes = dao.retornaFigurinhasColecao(idAlbum, nomeColecao);
+    @Override
+    public int calculaPorcentagemFigurinhasFaltantes(int idAlbum, String nomeColecao) {
+    	int quantidade = 0;
+    	int tamanhoAtualColecao = 0;
+    	int porcentagem;
+    	Album album = dao.getAlBumPeloId(idAlbum);
+    	int figurinhas[] = new int[album.getQuantidade()];
     	
+    	figurinhas = retornaFigurinhasDaColecaoFaltantes(idAlbum, nomeColecao);
     	
-    	return FigPresentes;
+    	for(int i = 0; i < figurinhas.length; i++) {
+    		if(figurinhas[i] != -1) {
+    			quantidade++;
+    		}
+    	}
+    	porcentagem = ( quantidade * album.getQuantidade())/100;
+    	
+    	return porcentagem;
+    }
+
+    
+    @Override
+    public int[] retornaFigurinhasDaColecao(int idAlbum, String nomeCol){
+    	Album album = dao.getAlBumPeloId(idAlbum);
+    	List<String> figsRetorno = new ArrayList<String>();
+    	int figurinhasNaColecao[] = new int[album.getQuantidade()];
+		int figFaltantes[] = new int [album.getQuantidade()];
+    	figsRetorno = dao.retornaFigurinhasColecao(idAlbum, nomeCol);
+    	for(int i = 0; i < figurinhasNaColecao.length; i++ ) {
+    		figurinhasNaColecao[i] = -1;
+    		 figFaltantes[i] = -1;
+    	}
+    	
+    	for(int i = 1; i < figurinhasNaColecao.length + 1; i++) {
+    		for(int j = 0; j < figsRetorno.size(); j++) {
+    			if(Integer.parseInt(figsRetorno.get(j)) == i) {
+    				figurinhasNaColecao[i] = Integer.parseInt(figsRetorno.get(j));
+    			}
+    		}
+    		
+    	}
+    	return figurinhasNaColecao;
     }
     
-    private List<String> retornaFigFaltantesColecao(List<String> FigPresentes){
+    @Override
+    public int[] retornaFigurinhasDaColecaoFaltantes(int idAlbum, String nomeCol){
+    	Album album = dao.getAlBumPeloId(idAlbum);
+    	List<String> figsRetorno = new ArrayList<String>();
+    	int figurinhasNaColecao[] = new int[album.getQuantidade()];;
+		int figFaltantes[] = new int [album.getQuantidade()];
+    	figsRetorno = dao.retornaFigurinhasColecao(idAlbum, nomeCol);
+    	for(int i = 0; i < figurinhasNaColecao.length; i++ ) {
+    		figurinhasNaColecao[i] = -1;
+    		 figFaltantes[i] = -1;
+    	}
     	
-    	return FigPresentes;
+    	for(int i = 0; i < figurinhasNaColecao.length; i++) {
+    		for(int j = 0; j < figsRetorno.size(); j++) {
+    			if(Integer.parseInt(figsRetorno.get(j)) == i) {
+    				figurinhasNaColecao[i] = Integer.parseInt(figsRetorno.get(j));
+    			}
+    			else {
+    				figFaltantes[i] = i;
+    			}
+    		}
+    		
+    	}
+    	return figFaltantes;
     }
 
 }
