@@ -37,9 +37,15 @@ public class Main {
             
             switch (array[0]) {
             	case "novo-album":
-            		int nFig = Integer.parseInt(array[2]);
-            		int id = servico.adicionaAlbum(array[1], nFig);
-            		saida.println("Album " + id + " criado.");
+            		try {
+            			int nFig = Integer.parseInt(array[2]);
+                		int id = servico.adicionaAlbum(array[1], nFig);
+                		saida.println("Album " + id + " criado.");
+            		}catch( ArrayIndexOutOfBoundsException e) {
+            			System.out.println("Algum parametro não foi digitado corretamente, por favor tente novamente.");
+            		}catch(NumberFormatException e) {
+            			System.out.println("A ordem dos parametros está incorreta, por favor tente novamente.");
+            		}
             		break;
             	case "albuns":
             		List<Album> lista = servico.retornaListaAlbuns();
@@ -56,45 +62,71 @@ public class Main {
             		
             		break;
             	case "mostrar":
-            		int ID = Integer.parseInt(array[1]);
-    				Album album = servico.mostrarAlbumPeloId(ID);
-    				Colecao colecao;
-    				int porcentagemAtual, posrcentagemFaltantes;
-    				int figsAtuais[] = new int[album.getQuantidade()];
-    				int figsFaltantes[] = new int[album.getQuantidade()];
-            			if(array[2] == null) {
-            				if(album != null) {
-            					System.out.println("----Informações do Album----");
-            					System.out.println("Título: " + album.getNome());
-            					System.out.println("Quantidade de figurinhas: " + album.getQuantidade());
-            				}
-            			}else {
-            				porcentagemAtual = servico.calculaPorcentagemFigurinhasAtual(Integer.valueOf(array[1]), array[2]);
-            				posrcentagemFaltantes = servico.calculaPorcentagemFigurinhasFaltantes(Integer.valueOf(array[1]), array[2]);
-            				figsAtuais = servico.retornaFigurinhasDaColecao(Integer.valueOf(array[1]), array[2]);
-            				figsFaltantes = servico.retornaFigurinhasDaColecaoFaltantes(Integer.valueOf(array[1]), array[2]);
-            			}
+            		try {
+                		int ID = Integer.parseInt(array[1]);
+        				Album album = servico.mostrarAlbumPeloId(ID);
+                				if(album != null) {
+                					System.out.println("----Informações do Album----");
+                					System.out.println("Título: " + album.getNome());
+                					System.out.println("Quantidade de figurinhas: " + album.getQuantidade());
+                				}
+            		}catch( ArrayIndexOutOfBoundsException e) {
+            			System.out.println("Algum parametro não foi digitado corretamente, por favor tente novamente.");
+            		}
+
             		break;
             	case "nova-colecao":
-            		int idAlbum = Integer.parseInt(array[1]);
-            		String nomeColecao = array[2].trim();
-            		boolean colecaoJaExiste = servico.adicionarNovaColecao(idAlbum, nomeColecao);
-            		if(colecaoJaExiste) {
-            			saida.println("Esta colecao já existe para o album " + idAlbum);
-            		}
-            		else {
-            			saida.println("Colecao " + idAlbum + "/"+ array[2] + " criada.");
+            		try {
+            			int idAlbum = Integer.parseInt(array[1]);
+                		String nomeColecao = array[2].trim();
+                		boolean colecaoJaExiste = servico.adicionarNovaColecao(idAlbum, nomeColecao);
+                		if(colecaoJaExiste) {
+                			saida.println("Esta colecao já existe para o album " + idAlbum);
+                		}
+                		else {
+                			saida.println("Colecao " + idAlbum + "/"+ array[2] + " criada.");
+                		}
+            		}catch(NumberFormatException e) {
+            			System.out.println("A ordem dos parametros está incorreta, por favor tente novamente.");
+            		}catch(ArrayIndexOutOfBoundsException e) {
+            			System.out.println("Algum parametro não foi digitado corretamente, por favor tente novamente.");
             		}
             		break;
             	case "adicionar":
             		boolean figurinhasAdicionadas = false;
-            		int idDoAlbum =  Integer.parseInt(array[1]);
-            		String nomColecao = array[2].trim();
-            		String figurinhas = array[3].trim();
-            		figurinhasAdicionadas = servico.adicionarFigurinhas(idDoAlbum, nomColecao, figurinhas);
-            		if(!figurinhasAdicionadas) {
-            			System.out.println("Pode ser que a colecao " + nomColecao + " ainda não exista!\n Verfique sua existencia ou crie uma nova coleção");
+            		try {
+            			int idDoAlbum =  Integer.parseInt(array[1]);
+                		String nomColecao = array[2].trim();
+                		String figurinhas = array[3].trim();
+                		figurinhasAdicionadas = servico.adicionarFigurinhas(idDoAlbum, nomColecao, figurinhas);
+                		if(!figurinhasAdicionadas) {
+                			System.out.println("Pode ser que a colecao " + nomColecao + " ainda não exista!\n Verfique sua existencia ou crie uma nova coleção");
+                		}
+            		}catch(NumberFormatException e) {
+            			System.out.println("A ordem dos parametros está incorreta, por favor tente novamente.");
+            		}catch(ArrayIndexOutOfBoundsException e) {
+            			System.out.println("Algum parametro não foi digitado corretamente, por favor tente novamente.");
             		}
+            		break;
+            	case "mostrar-colecao":
+            		int id_Album = Integer.parseInt(array[1]);
+    				Album albumC = servico.mostrarAlbumPeloId(id_Album);
+    				Colecao colecao;
+    				int porcentagemAtual, porcentagemFaltantes;
+    				int figsAtuais[] = new int[albumC.getQuantidade()];
+    				int figsFaltantes[] = new int[albumC.getQuantidade()];
+    				
+    				porcentagemAtual = servico.calculaPorcentagemFigurinhasAtual(Integer.valueOf(array[1]), array[2]);
+    				porcentagemFaltantes = servico.calculaPorcentagemFigurinhasFaltantes(Integer.valueOf(array[1]), array[2]);
+    				figsAtuais = servico.retornaFigurinhasDaColecao(Integer.valueOf(array[1]), array[2]);
+    				figsFaltantes = servico.retornaFigurinhasDaColecaoFaltantes(Integer.valueOf(array[1]), array[2]);
+    				
+    				System.out.println("Album: " + albumC.getNome());
+    				System.out.println("Titulo: " + array[2]);
+    				System.out.print("Presentes ("+porcentagemAtual+"%): ");
+    				imprimeVetor(figsAtuais);
+    				System.out.print("Faltantes ("+porcentagemFaltantes+"%): ");
+    				imprimeVetor(figsFaltantes);
             		break;
                 case "sair":
                     break loop;
@@ -104,6 +136,14 @@ public class Main {
         }
     }
 
+    void imprimeVetor(int[] vetor) {
+    	for(int i = 0; i < vetor.length; i++) {
+    		if(vetor[i] != -1)
+    		System.out.print(vetor[i] + " ");
+    	}
+    	System.out.println("");
+    }
+    
     String leComand() {
         while (true) {
             saida.print(PROMPT);;

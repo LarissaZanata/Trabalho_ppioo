@@ -74,13 +74,13 @@ public class Dao implements ColecoesDao{
 	@Override
 	public boolean adicionarFigurinhasColecao(int idAlbum, String nomeColecao, String figurinhas) {
 		boolean figurinhasAdicionadas = false;
-		for(int i = 0; i < listaDeColecao.size(); i++) {
-			if(listaDeColecao.get(i).getIdAlbum() == idAlbum && listaDeColecao.get(i).getNome().equals(nomeColecao)) {
-				String array[] = figurinhas.split(",");
-				listaDeColecao.get(i).adicionarFigurinhaNaColecao(array);
-				figurinhasAdicionadas = true;
+			for(int i = 0; i < listaDeColecao.size(); i++) {
+				if(listaDeColecao.get(i).getIdAlbum() == idAlbum && listaDeColecao.get(i).getNome().equals(nomeColecao)) {
+					String array[] = figurinhas.split(",");
+					listaDeColecao.get(i).adicionarFigurinhaNaColecao(array);
+					figurinhasAdicionadas = true;
+				}
 			}
-		}
 		return figurinhasAdicionadas;
 	}
 	
@@ -106,8 +106,5 @@ public class Dao implements ColecoesDao{
 			}
 		}	
 		return repetidas;
-	}
-	
-	
-	
+	}	
 }

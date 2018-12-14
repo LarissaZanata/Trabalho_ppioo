@@ -139,16 +139,13 @@ public class LocalColecoesServico implements ColecoesServico {
     	figsRetorno = dao.retornaFigurinhasColecao(idAlbum, nomeCol);
     	for(int i = 0; i < figurinhasNaColecao.length; i++ ) {
     		figurinhasNaColecao[i] = -1;
-    		 figFaltantes[i] = -1;
+    		figFaltantes[i] = -1;
     	}
     	
-    	for(int i = 0; i < figurinhasNaColecao.length; i++) {
+    	for(int i = 1; i < figurinhasNaColecao.length + 1; i++) {
     		for(int j = 0; j < figsRetorno.size(); j++) {
-    			if(Integer.parseInt(figsRetorno.get(j)) == i) {
-    				figurinhasNaColecao[i] = Integer.parseInt(figsRetorno.get(j));
-    			}
-    			else {
-    				figFaltantes[i] = i;
+    			if(Integer.parseInt(figsRetorno.get(j)) != i) {
+    				figFaltantes[j] = i;
     			}
     		}
     		
